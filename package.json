@@ -1,0 +1,45 @@
+{
+  "name": "reception",
+  "version": "1.0.0",
+  "description": "single signon for multiple applications",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "test": "(npmts)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/pkunz/reception.git"
+  },
+  "keywords": [
+    "sign",
+    "in",
+    "oauth2",
+    "cookies"
+  ],
+  "author": "Lossless GmbH",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/pkunz/reception/issues"
+  },
+  "homepage": "https://gitlab.com/pkunz/reception#README",
+  "dependencies": {
+    "@types/express": "^4.0.35",
+    "@types/passport": "^0.3.2",
+    "@types/passport-facebook": "^2.1.0",
+    "@types/passport-google-oauth": "^1.0.32",
+    "@types/passport-twitter": "^1.0.30",
+    "express": "^4.14.1",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-google-oauth": "^1.0.0",
+    "passport-twitter": "^1.0.4",
+    "smartq": "^1.1.0",
+    "typings-global": "^1.0.14"
+  },
+  "devDependencies": {
+    "open": "0.0.5",
+    "smartchai": "^1.0.1",
+    "typings-test": "^1.0.3"
+  }
+}
