@@ -39,4 +39,6 @@ let myReception = reception.Reception({
 
 ```
 
+> MIT licensed | **&copy;** 2016 - 2017 [Lossless GmbH](https://lossless.gmbh)
+
 [![npm](https://push.rocks/assets/repo-header.svg)](https://push.rocks)
