@@ -9,45 +9,52 @@ import { Deferred as ICDeferred } from 'smartq'
 export type TStrategy = 'Google' | 'Facebook' | 'Twitter'
 
 export interface IStrategyData {
-    Twitter?: {
-        consumerKey: string
-        consumerSecret: string
-    }
-    Facebook?: {
-        clientID: string
-        clientSecret: string
-    }
-    Google?: {
-        clientID: string
-        clientSecret: string
-    }
+  Twitter?: {
+    consumerKey: string
+    consumerSecret: string
+  }
+  Facebook?: {
+    clientID: string
+    clientSecret: string
+  }
+  Google?: {
+    clientID: string
+    clientSecret: string
+  }
 }
 
 export interface IReceptionConstructorOptions {
-    strategyData: IStrategyData
+  strategyData: IStrategyData
 }
 
 export class Reception {
-    // the express app
-    expressApp: IExpress = plugins.express()
-    expressPort: number = 3000
-    // strategies
-    ppStrategyFacebook: plugins.passportFacebook.Strategy = null
-    ppStategyTwitter: plugins.passportTwitter.Strategy = null
-    ppStrategyGoogle: plugins.passportGoogle.OAuth2Strategy = null
+  // the express app
+  expressApp: IExpress = plugins.express()
+  expressServer: plugins.http.Server
+  expressPort: number = 3000
+  // strategies
+  ppStrategyFacebook: plugins.passportFacebook.Strategy = null
+  ppStategyTwitter: plugins.passportTwitter.Strategy = null
+  ppStrategyGoogle: plugins.passportGoogle.OAuth2Strategy = null
 
-    // status
-    running = this.runningDeferred.promise
-    protected runningDeferred: ICDeferred<number> = plugins.smartq.defer()
+  // status
+  runningDeferred: ICDeferred<number> = plugins.smartq.defer()
+  running = this.runningDeferred.promise
 
-    constructor(optionsArg: IReceptionConstructorOptions) {
-        this.expressApp.get('/', (req, res) => {
-            res.send('Hello World!')
-        })
+  constructor(optionsArg: IReceptionConstructorOptions) {
+    this.expressApp.get('/', (req, res) => {
+      res.send('Hello World!')
+    })
+  }
 
-        this.expressApp.listen(this.expressPort, () => {
-            console.log(`Reception listening on port ${this.expressPort}`)
-            this.runningDeferred.resolve(this.expressPort)
-        })
-    }
+  start() {
+    this.expressServer = this.expressApp.listen(this.expressPort, () => {
+      console.log(`Reception listening on port ${this.expressPort}`)
+      this.runningDeferred.resolve(this.expressPort)
+    })
+  }
+
+  stop() {
+    this.expressServer.close()
+  }
 }

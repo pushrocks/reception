@@ -1,4 +1,5 @@
 /// <reference types="express" />
+/// <reference types="node" />
 import * as plugins from './reception.plugins';
 import { Express as IExpress } from 'express';
 import { Deferred as ICDeferred } from 'smartq';
@@ -22,11 +23,14 @@ export interface IReceptionConstructorOptions {
 }
 export declare class Reception {
     expressApp: IExpress;
+    expressServer: plugins.http.Server;
     expressPort: number;
     ppStrategyFacebook: plugins.passportFacebook.Strategy;
     ppStategyTwitter: plugins.passportTwitter.Strategy;
     ppStrategyGoogle: plugins.passportGoogle.OAuth2Strategy;
+    runningDeferred: ICDeferred<number>;
     running: Promise<number>;
-    protected runningDeferred: ICDeferred<number>;
     constructor(optionsArg: IReceptionConstructorOptions);
+    start(): void;
+    stop(): void;
 }
