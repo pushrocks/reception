@@ -1,6 +1,6 @@
 {
   "name": "reception",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "single signon for multiple applications",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
